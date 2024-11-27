@@ -1,14 +1,18 @@
 import os
-from setuptools import setup, find_packages
+
+from setuptools import find_packages, setup
+
 
 def get_requirements(file_path: str) -> list[str]:
     "This function will return the list of packages"
     print(f"Looking for requirements file at: {os.path.abspath(file_path)}")
     requirements = []
     with open(file_path) as file_obj:
-        requirements=file_obj.readlines()
+        requirements = file_obj.readlines()
 
-    requirements = [requirement.replace("\n", "") for requirement in requirements]
+    requirements = [
+        requirement.replace("\n", "") for requirement in requirements
+    ]  # noqa
     if "-e ." in requirements:
         requirements.remove("-e .")
     return requirements
@@ -17,7 +21,7 @@ def get_requirements(file_path: str) -> list[str]:
 setup(
     name="api-x-trace-logger",
     version="0.0.1",
-    description="A logging library with trace ID support and FastAPI middleware.",
+    description="A logging library with trace ID support and FastAPI middleware.",  # noqa
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     author="Happy Sharma",

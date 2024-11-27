@@ -1,5 +1,6 @@
 from trace_logger.logging_adapter import get_logger
-from trace_logger.utils import set_trace_id, get_trace_id
+from trace_logger.utils import get_trace_id, set_trace_id
+
 
 def test_logger_with_trace_id():
     set_trace_id("12345")

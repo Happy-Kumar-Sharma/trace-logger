@@ -1,13 +1,35 @@
 # trace-logger
 
-install all dependent packages
-`pip install -r requirements.txt`
+Populate same trace id across all logs related to each request.
 
-Install build tools:
-`pip install build twine`
+* Added color log level wise.
 
-Build the package:
-`python -m build`
+This package patching the standard `logging` library.
 
-Clean Previous Builds
-`rm -rf dist build *.egg-info`
+Thus, after import, all improvements will be available inside the `logging` module.
+
+### Requirements
+
+Python 3.7 and above. with fastapi and starlette dependencies.
+
+### Installation
+
+`pip install api-x-trace-logger`
+
+### Usage
+
+#### Simple usage
+
+```python
+import api_logger
+
+```
+
+#### More advanced usage
+
+```python
+import api_logger
+# Or, if you want to configure color formatter:
+handler = logging.colorfullogs(True)
+
+```

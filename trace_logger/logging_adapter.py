@@ -1,6 +1,8 @@
-import logging
 import inspect
+import logging
+
 from .utils import get_trace_id
+
 
 class TraceIDAdapter(logging.LoggerAdapter):
     def process(self, msg, kwargs):
@@ -8,7 +10,11 @@ class TraceIDAdapter(logging.LoggerAdapter):
         frame = inspect.currentframe()
         calling_frame = frame.f_back.f_back.f_back
         function_name = calling_frame.f_code.co_name
-        return f"[trace_id: {trace_id}] [function: {function_name}] {msg}", kwargs
+        return (
+            f"[trace_id: {trace_id}] [function: {function_name}] {msg}",
+            kwargs,
+        )  # noqa
+
 
 def get_logger(name: str = __name__) -> TraceIDAdapter:
     return TraceIDAdapter(logging.getLogger(name), {})

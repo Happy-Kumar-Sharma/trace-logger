@@ -1,8 +1,10 @@
 from uuid import uuid4
+
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
-from starlette.responses import Response
-from .utils import set_trace_id, trace_id_var
+
+from .utils import set_trace_id
+
 
 class TraceIDMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):

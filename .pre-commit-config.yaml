@@ -1,0 +1,108 @@
+repos:
+  # Basic pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0  # Use the latest stable version
+    hooks:
+      - id: trailing-whitespace  # Remove trailing whitespaces
+      - id: end-of-file-fixer  # Ensure files end with a newline
+      - id: check-yaml  # Validate YAML files
+      - id: check-json  # Validate JSON files
+      # - id: detect-aws-credentials  # Prevent committing AWS credentials
+      - id: check-added-large-files  # Check for large files in commits
+
+  # Flake8 - Python linting for PEP8 standards (from GitHub)
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.0.0  # Latest stable version
+    hooks:
+      - id: flake8  # Python linting for PEP8 standards
+
+  # Black - Python code formatting
+  - repo: https://github.com/psf/black
+    rev: 23.7.0
+    hooks:
+      - id: black  # Auto-format Python code
+
+  # isort - Sort Python imports automatically
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.10.1
+    hooks:
+      - id: isort  # Sort imports
+
+  # Mypy - Static type checking for Python
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.1.1
+    hooks:
+      - id: mypy  # Static type checking
+
+  # # Bandit - Security vulnerability scanning - error while commiting
+  # - repo: https://github.com/PyCQA/bandit
+  #   rev: 1.7.1
+  #   hooks:
+  #     - id: bandit  # Security checks for Python code
+  #       args: ["-r", ".", "--exclude", "setup.py"]
+
+  # # Safety - Check Python dependencies for known vulnerabilities -- need fix
+  # - repo: https://github.com/pyupio/safety
+  #   rev: 2.3.0
+  #   hooks:
+  #     - id: safety  # Scan for vulnerable Python packages
+
+  # # Pylint - Comprehensive Python code linting -- need fix
+  # - repo: https://github.com/PyCQA/pylint
+  #   rev: v2.15.0
+  #   hooks:
+  #     - id: pylint  # Deep linting of Python code
+
+  # # Pytest - Run tests before commit - need fix
+  # - repo: local
+  #   hooks:
+  #     - id: pytest
+  #       name: Run PyTest
+  #       entry: pytest tests
+  #       language: system
+  #       types: [python]
+  #       # args: [tests]
+
+  # # Markdownlint - Check formatting in Markdown files -- need fix
+  # - repo: https://github.com/markdownlint/markdownlint
+  #   rev: v0.9.0
+  #   hooks:
+  #     - id: markdownlint  # Check markdown formatting
+
+  # # Spell Check - Basic spell checking -- need fix
+  # - repo: https://github.com/pre-commit/pre-commit-hooks
+  #   rev: v4.4.0
+  #   hooks:
+  #     - id: spell-check  # Basic spell checking
+
+  # Pyupgrade - Upgrade Python syntax to the latest version
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v2.12.0
+    hooks:
+      - id: pyupgrade  # Upgrade Python syntax to modern versions
+
+  # # Vulture - Find unused code - working but not required
+  # - repo: https://github.com/jendrikseipp/vulture
+  #   rev: v2.4
+  #   hooks:
+  #     - id: vulture  # Detect and remove unused code
+
+  # # Commit Message Formatting - Enforce specific commit message conventions
+  # #  -- need fix
+  # - repo: https://github.com/jdennes/pre-commit-message-conventions
+  #   rev: v1.0.0
+  #   hooks:
+  #     - id: message-conventions
+  #       args: ["--convention", "angular"]
+
+  # # Yaml Lint - Ensure YAML is well formatted - working but not required
+  # - repo: https://github.com/adrienverge/yamllint
+  #   rev: v1.26.3
+  #   hooks:
+  #     - id: yamllint  # Lint YAML files
+
+  # # JSON Schema Validator - Validate JSON files - working but not required
+  # - repo: https://github.com/sirosen/check-jsonschema
+  #   rev: 0.29.4
+  #   hooks:
+  #     - id: check-jsonschema  # Validate JSON schema
