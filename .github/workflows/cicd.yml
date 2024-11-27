@@ -32,7 +32,7 @@ jobs:
 
       # Step 4: Run flake8
       - name: Run flake8
-        run: trace_logger tests  # Adjust the target directory if needed
+        run: flake8 trace_logger/ tests/  # Adjust the target directory if needed
 
       # Step 5: Run isort check
       - name: Run isort check
