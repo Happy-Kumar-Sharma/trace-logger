@@ -1,0 +1,9 @@
+fastapi
+starlette
+pytest
+mypy
+flake8
+pyupgrade
+isort
+black
+check-json

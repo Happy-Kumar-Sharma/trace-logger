@@ -69,3 +69,8 @@ Clean Previous Builds
 ```shell script
 rm -rf dist build *.egg-info
 ```
+
+Run the tests using
+```shell script
+pytest tests/
+```
