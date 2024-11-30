@@ -1,4 +1,4 @@
-from trace_logger.logging_adapter import get_logger
+from trace_logger.config import get_logger
 from trace_logger.utils import get_trace_id, set_trace_id
 
 
