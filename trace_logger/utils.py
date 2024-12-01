@@ -11,4 +11,4 @@ def get_trace_id() -> str:
     try:
         return trace_id_var.get()
     except LookupError:
-        return "unknown"
+        return "LookupError"

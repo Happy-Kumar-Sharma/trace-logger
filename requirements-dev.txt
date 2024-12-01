@@ -7,3 +7,5 @@ pyupgrade
 isort
 black
 check-json
+uvicorn
+pytest-mock
