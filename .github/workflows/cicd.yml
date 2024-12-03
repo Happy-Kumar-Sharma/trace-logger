@@ -27,7 +27,7 @@ jobs:
           pip install flake8
 
       - name: Run flake8
-        run: flake8 trace_logger/ tests/
+        run: flake8 secure_logs/ tests/
 
   # Job 2: Import sorting with isort
   lint-isort:
@@ -48,7 +48,7 @@ jobs:
           pip install isort
 
       - name: Run isort check
-        run: isort trace_logger/ tests/ --check-only
+        run: isort secure_logs/ tests/ --check-only
 
   # Job 3: Static type checking with mypy
   lint-mypy:
@@ -69,7 +69,7 @@ jobs:
           pip install mypy
 
       - name: Run mypy
-        run: mypy trace_logger/ tests/
+        run: mypy secure_logs/ tests/
 
   # Job 4: Run tests with pytest
   run-tests:
