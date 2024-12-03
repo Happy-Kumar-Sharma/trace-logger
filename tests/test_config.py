@@ -2,9 +2,9 @@
 # type: ignore
 import logging
 
-from trace_logger.config import SensitiveValueFilter, TraceIDAdapter
+from secure_logs.config import SensitiveValueFilter, TraceIDAdapter
 
-from trace_logger.config import configure_logging, get_logger  # isort: skip
+from secure_logs import configure_logging, get_logger  # isort: skip
 
 
 def test_configure_logging_once(mocker):
@@ -16,7 +16,7 @@ def test_configure_logging_once(mocker):
 
 def test_trace_id_adapter(mocker):
     mock_trace_id = mocker.patch(
-        "trace_logger.config.get_trace_id", return_value="12345"
+        "secure_logs.config.get_trace_id", return_value="12345"
     )
     logger = logging.getLogger("test")
     adapter = TraceIDAdapter(logger, {})

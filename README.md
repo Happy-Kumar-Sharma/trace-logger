@@ -1,26 +1,27 @@
-# Trace Logger Library with Sensitive Value Masking
+# SecureLogs Library with Sensitive Value Masking
 
-The **Trace Logger Library** provides logging functionality with **Trace ID** support and the ability to **mask sensitive values** in logs (such as credit card numbers, SSNs, tokens, etc.). It is designed for easy integration with **FastAPI** applications.
+The **SecureLogs Library** provides logging functionality with **Trace ID** support and the ability to **mask sensitive values** in logs (such as credit card numbers, SSNs, tokens, etc.). It is designed for easy integration with **FastAPI** applications.
 
 This guide will walk you through how to install, configure, and use the library to log trace information while hiding sensitive values.
 
 ## Table of Contents
 
-1. [Installation](#installation)
-2. [Basic Setup](#basic-setup)
-3. [Configuring Logger](#configuring-logger)
-4. [Using Sensitive Value Masking](#using-sensitive-value-masking)
-5. [FastAPI Integration](#fastapi-integration)
-6. [Example Output](#example-output)
-7. [Configuration Options](#configuration-options)
-8. [Conclusion](#conclusion)
+1. [Installation](#1-installationinstallation)
+2. [Basic Setup](#2-basic-setupbasic-setup)
+3. [Configuring Logger](#3-configuring-logger)
+4. [Using Sensitive Value Masking](#4-using-sensitive-value-masking)
+5. [FastAPI Integration](#5-fastapi-integration)
+6. [Example Output](#6-example-output)
+7. [Configuration Options](#7-configuration-options)
+8. [Conclusion](#8-conclusion)
+9. [Example Implementation](#9-example-implementation)
 
 ## 1. Installation
 
-To install the Trace Logger Library, use `pip`:
+To install the SecureLogs Library, use `pip`:
 
 ```bash
-pip install api-x-trace-logger
+pip install SecureLogs
 ```
 
 ## 2. Basic Setup
@@ -31,9 +32,9 @@ In your FastAPI application, import the necessary components from the library.
 ```python
 from uuid import UUID
 from fastapi import Depends, FastAPI
-from trace_logger.config import configure_logging, get_logger
-from trace_logger.deps import get_trace_id
-from trace_logger.middleware import TraceIDMiddleware
+from secure_logs import configure_logging, get_logger
+from secure_logs import get_trace_id
+from secure_logs.middleware import TraceIDMiddleware
 ```
 
 ### b. Configure Logging
@@ -181,6 +182,57 @@ logger = get_logger(__name__, sensitive_patterns=sensitive_patterns, show_last=2
 ```
 
 ## 8. Conclusion
-The Trace Logger Library simplifies logging with trace ID support and provides powerful features to mask sensitive data in logs. With easy integration into FastAPI, this library ensures that sensitive data like credit card numbers, SSNs, and tokens are securely hidden while providing useful trace information.
+The SecureLogs Library simplifies logging with trace ID support and provides powerful features to mask sensitive data in logs. With easy integration into FastAPI, this library ensures that sensitive data like credit card numbers, SSNs, and tokens are securely hidden while providing useful trace information.
 
 By using this library, you can ensure your application’s logs are secure, readable, and traceable.
+
+## 9. Example Implementation
+```python
+from uuid import UUID
+
+from fastapi import Depends, FastAPI
+
+from secure_logs import configure_logging, get_logger
+from secure_logs import get_trace_id
+from secure_logs.middleware import TraceIDMiddleware
+
+# You can explicitly configure logging
+configure_logging(level="debug")  # Optional
+
+app = FastAPI()
+app.add_middleware(TraceIDMiddleware)
+
+# Keep this in a common file from where you can access through out the project
+# logger = get_logger(__name__,) # General implementation
+# logger = get_logger(__name__, sensitive_patterns=['This', 'log']) # Hide sensitive values with *
+# logger = get_logger(__name__, sensitive_patterns=['This', 'log'],show_last=1) # Hide sensitive values with * by showing only last 1 item
+
+
+# Configure sensitive value filter
+sensitive_patterns = [
+    r"\d{16}",  # Example: credit card numbers
+    r"(?:\d{3}-\d{2}-\d{4})",  # Example: SSNs
+    "User",  # Example: any text
+    "level",
+    "log",
+    r"(?<=Bearer\s)[a-zA-Z0-9]+",  # Example: token
+]
+logger = get_logger(__name__, sensitive_patterns=sensitive_patterns, show_last=2)
+
+
+@app.get("/")
+def say_hello(name: str = "Dev", trace_id: UUID = Depends(get_trace_id)):
+    logger.debug("This is debug level log.")
+    logger.info("This is info level log.")
+    logger.error("This is error level log.")
+    logger.warning("This is warning level log.")
+    return {"Message": f"Hello {name}"}
+
+
+@app.get("/userinfo")
+def get_user_info(trace_id: UUID = Depends(get_trace_id)):
+    logger.info("User credit card: 1234567812345678.")
+    logger.info("User SSN: 123-45-6789.")
+    logger.info("Token authorization: Bearer abc123DEF456")
+    return {"user": "Dev"}
+```

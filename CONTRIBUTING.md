@@ -21,7 +21,8 @@ python -m venv venv
 
 Activate the virtual env
 ```shell script
-source venv/Scripts/activate
+source venv/Scripts/activate [Windows]
+source venv/bin/activate [Ubuntu]
 ```
 
 Install packages from requirements.txt file

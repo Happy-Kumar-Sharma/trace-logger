@@ -19,7 +19,7 @@ def get_requirements(file_path: str) -> list[str]:
 
 
 setup(
-    name="api-x-trace-logger",
+    name="SecureLogs",
     version="0.0.1",
     description="A logging library with trace ID support and FastAPI middleware.",  # noqa
     long_description=open("README.md").read(),
@@ -27,6 +27,7 @@ setup(
     author="Happy Sharma",
     author_email="happycse54@gmail.com",
     url="https://github.com/Happy-Kumar-Sharma/trace-logger",
+    keywords=["secure logging", "SecureLogs", "python logging module", "best logging library", "mask sensitive values"],
     packages=find_packages(),
     install_requires=get_requirements("requirements.txt"),
     classifiers=[
