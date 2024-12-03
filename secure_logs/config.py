@@ -6,6 +6,7 @@ import re
 
 from .utils import get_trace_id
 
+
 class TraceIDAdapter(logging.LoggerAdapter):
     def process(self, msg, kwargs):
         trace_id = get_trace_id()

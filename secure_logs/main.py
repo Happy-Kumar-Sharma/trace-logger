@@ -1,11 +1,12 @@
+# flake8: noqa
+# type: ignore
 # Example file
 
 from uuid import UUID
 
 from fastapi import Depends, FastAPI
 
-from secure_logs import configure_logging, get_logger
-from secure_logs import get_trace_id
+from secure_logs import configure_logging, get_logger, get_trace_id
 from secure_logs.middleware import TraceIDMiddleware
 
 # You can explicitly configure logging

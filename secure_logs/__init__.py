@@ -1,5 +1,8 @@
-from fastapi import Header
+# flake8: noqa
+# type: ignore
 import logging
+
+from fastapi import Header
 
 from secure_logs.config import SensitiveValueFilter, TraceIDAdapter
 
@@ -8,6 +11,7 @@ from .utils import trace_id_var
 
 def get_trace_id(x_trace_id: str = Header(None)):
     return trace_id_var.get()
+
 
 _LOGGING_CONFIGURED = False
 
@@ -31,6 +35,7 @@ def configure_logging(level: str, sensitive_patterns: list[str] = None):
             logging.getLogger().addFilter(sensitive_filter)
 
         _LOGGING_CONFIGURED = True
+
 
 def get_logger(
     name: str = __name__, sensitive_patterns: list[str] = None, show_last: int = 0

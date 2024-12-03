@@ -27,7 +27,13 @@ setup(
     author="Happy Sharma",
     author_email="happycse54@gmail.com",
     url="https://github.com/Happy-Kumar-Sharma/trace-logger",
-    keywords=["secure logging", "SecureLogs", "python logging module", "best logging library", "mask sensitive values"],
+    keywords=[
+        "secure logging",
+        "SecureLogs",
+        "python logging module",
+        "best logging library",
+        "mask sensitive values",
+    ],
     packages=find_packages(),
     install_requires=get_requirements("requirements.txt"),
     classifiers=[
