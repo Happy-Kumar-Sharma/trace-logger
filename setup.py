@@ -20,7 +20,7 @@ def get_requirements(file_path: str) -> list[str]:
 
 setup(
     name="SecureLogs",
-    version="0.0.1",
+    version="0.0.2",
     description="A logging library with trace ID support and FastAPI middleware.",  # noqa
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
