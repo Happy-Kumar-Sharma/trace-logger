@@ -32,15 +32,15 @@ jobs:
 
       # Step 4: Run flake8
       - name: Run flake8
-        run: flake8 trace_logger/ tests/  # Adjust the target directory if needed
+        run: flake8 secure_logs/ tests/  # Adjust the target directory if needed
 
       # Step 5: Run isort check
       - name: Run isort check
-        run: isort trace_logger/ tests/ --check-only
+        run: isort secure_logs/ tests/ --check-only
 
       # Step 6: Run mypy
       - name: Run mypy
-        run: mypy trace_logger/ tests/  # Adjust the target directory if needed
+        run: mypy secure_logs/ tests/  # Adjust the target directory if needed
 
       # Step 7: Run tests
       - name: Run tests
